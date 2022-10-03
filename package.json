@@ -15,9 +15,11 @@
   "dependencies": {
     "@heroicons/vue": "^1.0.6",
     "@prisma/client": "^4.4.0",
+    "@tailwindcss/forms": "^0.5.3",
     "@vue-hero-icons/outline": "^1.7.2",
     "@vue-hero-icons/solid": "^1.7.2",
     "bcrypt": "^5.0.1",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "url-pattern": "^1.0.3"
   }
 }
