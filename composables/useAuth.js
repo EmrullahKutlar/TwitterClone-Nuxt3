@@ -1,6 +1,7 @@
 export default () => {
   const useAuthToken = () => useState("auth_token");
   const useAuthUser = () => useState("auth_user");
+  const useAuthloading=()=> useState("auth_loading" ,()=> true);
 
   const setToken = (newToken) => {
     const authToken = useAuthToken();
@@ -10,6 +11,10 @@ export default () => {
   const setUser = (newUser) => {
     const authUser = useAuthUser();
     authUser.value = newUser;
+  };
+  const setIsAuthLoading = (value) => {
+    const authloading = useAuthloading();
+    authloading.value = value;
   };
   const login = ({ username, password }) => {
     return new Promise(async (resolve, reject) => {
@@ -57,6 +62,7 @@ export default () => {
 
   const initAuth = () => {
     return new Promise(async (resolve, reject) => {
+      setIsAuthLoading(true)
       try {
         await refreshToken();
         await getUser();
@@ -64,13 +70,17 @@ export default () => {
       } catch (error) {
         reject(error);
       }
+      finally{
+        setIsAuthLoading(false)
+      }
     });
   };
   return {
     login,
     useAuthUser,
     initAuth,
-    useAuthToken
+    useAuthToken,
+    useAuthloading
   };
 };
 
