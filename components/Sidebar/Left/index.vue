@@ -73,6 +73,20 @@
                     More
                 </template>
             </SidebarLeftTab>
+            <div class="hidden xl:block">
+                <UIButton liquid="" size="lg"> 
+                    <span class="font-bold">
+                        Tweet
+                    </span>
+                </UIButton>
+            </div>
+            <div class="block xl:hidden">
+                <UIButton > 
+                    <div class="w-6 h-6 font-bold">
+                        <PencilIcon />
+                    </div>
+                </UIButton>
+            </div>
         </div>
 
     </div>
@@ -81,7 +95,7 @@
 <script setup>
 import { HomeIcon } from "@heroicons/vue/solid"
 import { HashtagIcon, BellIcon, InboxIcon, BookmarkIcon, 
-DocumentTextIcon, UserIcon, DotsCircleHorizontalIcon } from "@heroicons/vue/outline"
+DocumentTextIcon, UserIcon, DotsCircleHorizontalIcon , PencilIcon} from "@heroicons/vue/outline"
 // const transation= 'transition ease-in-out duration-350' or like the bottom line 
 const { defaultTransition } = useTailwindConfig()
 

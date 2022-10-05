@@ -2,9 +2,9 @@
     <div>
 
         <MainSection title="Home" :loading="loading">
-            {{user}}
+            <!-- {{user}} -->
 
-            <TweetForm/>
+            <TweetForm :user="user"/>
             
         </MainSection>
 
