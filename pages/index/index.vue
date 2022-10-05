@@ -3,6 +3,9 @@
 
         <MainSection title="Home" :loading="loading">
             {{user}}
+
+            <TweetForm/>
+            
         </MainSection>
 
     </div>
