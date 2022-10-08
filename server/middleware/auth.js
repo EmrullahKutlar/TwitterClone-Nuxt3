@@ -5,7 +5,8 @@ import { getUserById } from "../db/users";
 
 export default defineEventHandler(async (event) => {
   const endpoints = ["/api/auth/user",
-  "/api/user/tweets"];
+  "/api/user/tweets",
+  "/api/tweets"]
   const isHandledByThisMiddleware = endpoints.some((endpoint) => {
     const pattern = new UrlPAttern(endpoint);
 
@@ -15,7 +16,6 @@ export default defineEventHandler(async (event) => {
     return;
   }
   const token = event.req.headers["authorization"]?.split(" ")[1];
-
   const decoded = decodeAccessToken(token);
 
   if (!decoded) {

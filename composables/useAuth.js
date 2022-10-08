@@ -27,10 +27,9 @@ export default () => {
             password,
           },
         });
-
         setToken(data.access_token);
         setUser(data.user);
-        console.log(data);
+        await initAuth()
         resolve(true);
       } catch (error) {
         reject(error);
