@@ -12,7 +12,7 @@
             <div class="border-b" :class="twitterBorderColor">
                 <TweetForm :user="user" />
             </div>
-
+            <TweetListFeed :tweets="homeTweets"/>
         </MainSection>
 
     </div>
@@ -24,6 +24,22 @@ const { useAuthUser } = useAuth()
 const loading = ref(false)
 const user = useAuthUser()
 const {twitterBorderColor} = useTailwindConfig()
+const {getHomeTweets} = useTweets()
+
+const homeTweets=ref([])
+
+onBeforeMount(async ()=>{
+    loading.value = true
+     try {
+      const {tweets} = await getHomeTweets() 
+      homeTweets.value = tweets
+    } catch (error) {
+        console.log(error);
+    } finally {
+        loading.value = false
+    }
+})
+
 </script>
 
 <style>
