@@ -7,7 +7,7 @@
             <div class="w-full p-2">
                 <textarea class=" w-full h-11 text-lg text-gray-900 placeholder:text-gray-400 
                     bg-transparent border-0 dark:text-white focus:ring-0" v-model="text" cols="30" rows="10"
-                    placeholder="What's happening ?"></textarea>
+                    :placeholder="props.placeholder"></textarea>
 
             </div>
 
@@ -114,13 +114,17 @@ const props = defineProps({
     user: {
         type: Object,
         required: true
+    },
+    placeholder:{
+        type: String,
+        default: "What's happening ?"
     }
 })
 const handleFormSubmit = () => {
-    alert()
         emits('onSubmit', {
             text: text.value,
-            mediaFiles: [selectedFile.value]
+            mediaFiles: [selectedFile.value],
+            
         })
 }
 const handleImageClick = () => {

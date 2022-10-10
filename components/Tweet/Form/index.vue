@@ -4,7 +4,7 @@
             <UISpinner />
         </div>
         <div v-else>
-            <TweetFormInput :user="props.user" @on-submit="hadleFormSubmit" />
+            <TweetFormInput :placeholder="props.placeholder" :user="props.user" @on-submit="hadleFormSubmit" />
 
         </div>
     </div>
@@ -14,10 +14,20 @@
 const { postTweet } = useTweets()
 const loading = ref(false)
 
+const emits = defineEmits(['onSuccess'])
+
 const props = defineProps({
     user: {
         type: Object,
         required: true
+    },
+    placeholder:{
+        type: String,
+        required: true
+    },
+    replyTo:{
+        type:Object,
+        default:null
     }
 })
 const hadleFormSubmit = async (data) => {
@@ -25,9 +35,10 @@ const hadleFormSubmit = async (data) => {
     try {
         const response = await postTweet({
             text: data.text,
-            mediaFiles: data.mediaFiles
+            mediaFiles: data.mediaFiles,
+            replyTo : props.replyTo?.id
         })
-        alert(response)
+        emits('onSuccess',response.tweet)
     } catch (error) {
         console.log(error);
     } finally {

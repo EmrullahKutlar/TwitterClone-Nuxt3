@@ -15,6 +15,7 @@ export default eventHandler(async (event) => {
       },
       replies: {
         include: {
+          mediaFiles: true,
           author: true,
           replyTo: {
             include: {

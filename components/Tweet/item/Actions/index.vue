@@ -1,34 +1,34 @@
 <template>
     <div class="flex items-start justify-between pr-24 -ml-2">
-        <TweetItemActionsIcon color="blue">
+        <TweetItemActionsIcon color="blue" :size="size">
             <template v-slot:icon="{ classes }">
                 <ChatIcon :class="classes" />
             </template>
-            <template v-slot:default>
+            <template v-slot:default v-if="showsStats">
                 {{props.tweet.repliesCount}}
             </template>
         </TweetItemActionsIcon>
         
 
-        <TweetItemActionsIcon color="green">
+        <TweetItemActionsIcon color="green" :size="size">
             <template v-slot:icon="{ classes }">
                 <RefreshIcon :class="classes" />
             </template>
-            <template v-slot:default>
+            <template v-slot:default v-if="showsStats">
                 {{generateRandomNumber()}}
             </template>
         </TweetItemActionsIcon>
 
-        <TweetItemActionsIcon color="red">
+        <TweetItemActionsIcon color="red" :size="size">
             <template v-slot:icon="{ classes }">
                 <HeartIcon :class="classes" />
             </template>
-            <template v-slot:default>
+            <template v-slot:default v-if="showsStats">
                 {{generateRandomNumber()}}
             </template>
         </TweetItemActionsIcon>
 
-        <TweetItemActionsIcon color="blue">
+        <TweetItemActionsIcon color="blue" :size="size">
             <template v-slot:icon="{ classes }">
                 <UploadIcon :class="classes" />
             </template>
@@ -46,8 +46,14 @@ const props = defineProps({
     tweet: {
         type: Object,
         required: true
+    },
+    compact:{
+        type: Boolean,
+        default: false
     }
 })
+const showsStats= computed(() => props.compact)
+const size= computed(() => props.compact?5:6)
 
 const generateRandomNumber = () => {
     return Math.floor(Math.random() * 100)
