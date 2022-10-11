@@ -7,7 +7,7 @@
 
     <div v-else class=" pb-4 border-b hover:bg-gray-100 cursor-pointer dark:hover:bg-dim-300"
       :class="[twitterBorderColor, defaultTransition]" v-for=" tweet in props.tweets" :key="tweet.id" @click.prevent="redirect(tweet)">
-      <TweetItem :tweet="tweet" compact="true">
+      <TweetItem :tweet="tweet" :compact="true">
       </TweetItem>
     </div>
   </div>
