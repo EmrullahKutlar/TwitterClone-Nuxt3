@@ -11,8 +11,8 @@
                 :class="twitterBorderColor" @click.self="redirect(props.tweet)">
                 <img :src="image.url" alt="" class="w-full rounded-2xl " @click.self="redirect(props.tweet)">
             </div>
-            <div class="mt-2" @click.self="redirect(props.tweet)">
-                <TweetItemActions :tweet="props.tweet" :compact="props.compact"></TweetItemActions>
+            <div class="mt-2" @click.self="redirect(props.tweet)" v-if="!props.hideActions">
+                <TweetItemActions :tweet="props.tweet" :compact="props.compact" @on-comment-click="handleComentClick"></TweetItemActions>
             </div>
         </div>
     </div>
@@ -28,12 +28,20 @@ const props = defineProps({
     compact: {
         type: Boolean,
         default: false
+    },
+    hideActions:{
+        type: Boolean,
+        default: false
     }
 })
 const tweetBodyWrapper = computed(() => props.compact ? 'ml-16' : 'ml-4 mt-4')
 const textSize = computed(() => props.compact ? 'text-base' : 'text-2xl')
 const redirect=(tweet)=>{
 navigateTo(`/status/${tweet.id}`)
+}
+const emitter = useEmitter()
+const handleComentClick = () => {
+    emitter.$emit('replyTweet',props.tweet)
 }
 
 </script>

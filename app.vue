@@ -21,7 +21,7 @@
           </div>
         </div>
         <UIModal  :isOpen="postTweetModal" @onClose="handleModalClose" >
-          <TweetForm :user="user" @onSuccess="handleFormSuccess" />
+          <TweetForm :reply-to="replyTweet" showReply :user="user" @onSuccess="handleFormSuccess" />
         </UIModal>
       </div>
       <AuthPage v-else />
@@ -34,22 +34,28 @@ const darkMode = ref(false)
 const { useAuthUser, initAuth, useAuthloading } = useAuth()
 const isAuthLoading = useAuthloading()
 const user = useAuthUser()
-const {closePostTweetModal, usePostTweetModal, openPostTweetModal}= useTweets()
+const {closePostTweetModal, usePostTweetModal, openPostTweetModal, useReplyTweet}= useTweets()
 const postTweetModal= usePostTweetModal()
-
+const replyTweet= useReplyTweet()
+const emitter= useEmitter()
+emitter.$on('replyTweet' , (tweet)=>{
+  openPostTweetModal(tweet)
+})
 onBeforeMount(() => {
   initAuth()
 })
-
-const handleFormSuccess = () => {
+const {getHomeTweets} = useTweets()
+const handleFormSuccess = async () => {
   closePostTweetModal()
+  emitter.$emit('handleFormSuccess')
 }
 const handleModalClose=()=>{
   closePostTweetModal()
 }
 const handleOpenTweetModal = () => {
-  openPostTweetModal()
+  openPostTweetModal(null)
 }
+
 </script>
 
 <style>
