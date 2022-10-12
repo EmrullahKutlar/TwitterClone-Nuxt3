@@ -23,7 +23,6 @@ const props = defineProps({
     },
     placeholder:{
         type: String,
-        required: true
     },
     replyTo:{
         type:Object,

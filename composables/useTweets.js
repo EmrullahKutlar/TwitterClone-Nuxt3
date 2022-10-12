@@ -3,7 +3,7 @@ export default () => {
     const form = new FormData();
 
     form.append("text", formData.text);
-    form.append('replyTo',formData.replyTo);
+    form.append("replyTo", formData.replyTo);
     formData.mediaFiles.forEach((mediaFile, index) => {
       form.append("media_file_" + index, mediaFile);
     });
@@ -14,33 +14,46 @@ export default () => {
     });
   };
 
-
-  const getHomeTweets=()=>{
-    return new Promise(async (resolve, reject)=>{
+  const getHomeTweets = () => {
+    return new Promise(async (resolve, reject) => {
       try {
-        const response = await useFetchApi('/api/tweets',{
+        const response = await useFetchApi("/api/tweets", {
           method: "GET",
-        })
+        });
         console.log(response);
-        resolve(response)
+        resolve(response);
       } catch (error) {
         reject(error);
       }
-    })
-  }
-  const getTweetById =(tweetId) => {
-    return new Promise(async(resolve, reject) => {
+    });
+  };
+  const getTweetById = (tweetId) => {
+    return new Promise(async (resolve, reject) => {
       try {
-        const response = await useFetchApi('/api/tweets/' + tweetId)
-        resolve(response)
+        const response = await useFetchApi("/api/tweets/" + tweetId);
+        resolve(response);
       } catch (error) {
         reject(error);
       }
-    })
-  }
+    });
+  };
+  const usePostTweetModal = () => useState("post_tweet_modal", () => false);
+
+  const closePostTweetModal = () => {
+    const postTweetModal = usePostTweetModal();
+    postTweetModal.value = false;
+  };
+  const openPostTweetModal = () => {
+    const postTweetModal = usePostTweetModal();
+    postTweetModal.value = true;
+  };
+  
   return {
     postTweet,
     getHomeTweets,
-    getTweetById
+    getTweetById,
+    closePostTweetModal,
+    usePostTweetModal,
+    openPostTweetModal
   };
 };
