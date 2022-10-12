@@ -9,7 +9,7 @@
                 {{author.name}}
             </span>
             <span class="ml-3 text-sm font-medium text-gray-400 ">
-                <nuxt-link to="#">
+                <nuxt-link to="/">
                     {{author.handle}}
                 </nuxt-link>
                 · {{props.tweet.postedAtHuman}}
