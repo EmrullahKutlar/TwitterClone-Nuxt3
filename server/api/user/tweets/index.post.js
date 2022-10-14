@@ -32,7 +32,6 @@ export default defineEventHandler(async (event) => {
   const filePromises= Object.keys(files).map(async key=>{
     const file=files[key]
    const cloudinaryResource= await uploadToCloudinary(file.filepath)
-   console.log(cloudinaryResource);
     return createMediaFile({
         url:cloudinaryResource.secure_url,
         providerPublicId:cloudinaryResource.public_id,

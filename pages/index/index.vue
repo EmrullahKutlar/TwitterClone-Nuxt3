@@ -24,12 +24,12 @@ const { useAuthUser } = useAuth()
 const loading = ref(false)
 const user = useAuthUser()
 const {twitterBorderColor} = useTailwindConfig()
-const {getHomeTweets} = useTweets()
+const {getTweets} = useTweets()
 const emitter= useEmitter()
-const getTweets=async()=>{
+const getTweet=async()=>{
     loading.value = true
      try {
-      const {tweets} = await getHomeTweets() 
+      const {tweets} = await getTweets() 
       homeTweets.value = tweets
     } catch (error) {
         console.log(error);
@@ -48,7 +48,7 @@ const handleFormSuccess=async ()=>{
 
 
 onBeforeMount(async ()=>{
-    await getTweets()
+    await getTweet()
 })
 
 </script>
