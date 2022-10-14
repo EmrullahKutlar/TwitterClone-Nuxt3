@@ -20,7 +20,7 @@
             </div>
           </div>
         </div>
-        <UIModal  :isOpen="postTweetModal" @onClose="handleModalClose" >
+        <UIModal :isOpen="postTweetModal" @onClose="handleModalClose">
           <TweetForm :reply-to="replyTweet" showReply :user="user" @onSuccess="handleFormSuccess" />
         </UIModal>
       </div>
@@ -31,36 +31,36 @@
 
 <script setup>
 const darkMode = ref(false)
-const { useAuthUser, initAuth, useAuthloading , logout} = useAuth()
+const { useAuthUser, initAuth, useAuthloading, logout } = useAuth()
 const isAuthLoading = useAuthloading()
 const user = useAuthUser()
-const {closePostTweetModal, usePostTweetModal, openPostTweetModal, useReplyTweet}= useTweets()
-const postTweetModal= usePostTweetModal()
-const replyTweet= useReplyTweet()
-const emitter= useEmitter()
-emitter.$on('replyTweet' , (tweet)=>{
+const { closePostTweetModal, usePostTweetModal, openPostTweetModal, useReplyTweet } = useTweets()
+const postTweetModal = usePostTweetModal()
+const replyTweet = useReplyTweet()
+const emitter = useEmitter()
+emitter.$on('replyTweet', (tweet) => {
   openPostTweetModal(tweet)
 })
-emitter.$on('toggleDarkMode',()=>{
-  darkMode.value= !darkMode.value
+emitter.$on('toggleDarkMode', () => {
+  darkMode.value = !darkMode.value
 })
 
 onBeforeMount(() => {
   initAuth()
 })
-const {getHomeTweets} = useTweets()
+const { getHomeTweets } = useTweets()
 const handleFormSuccess = async () => {
   closePostTweetModal()
   emitter.$emit('handleFormSuccess')
 }
-const handleModalClose=()=>{
+const handleModalClose = () => {
   closePostTweetModal()
 }
 const handleOpenTweetModal = () => {
   openPostTweetModal(null)
 }
 const handleUserLogout = () => {
-  logout()
+   logout()
 }
 
 </script>
