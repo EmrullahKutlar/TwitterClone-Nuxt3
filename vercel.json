@@ -7,12 +7,5 @@
             "serverFiles": ["server/**"]
         }
       }
-    ],
-    "routes": [
-        {
-          "src": "/server/middleware/(.*)",
-          "middlewarePath": "pages/",
-          "continue": true
-        }
-      ]
+    ]
 }
