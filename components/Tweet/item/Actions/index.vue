@@ -4,7 +4,7 @@
             <template v-slot:icon="{ classes }">
                 <ChatIcon :class="classes" />
             </template>
-            <template v-slot:default v-if="showsStats">
+            <template v-slot:default v-if="showStats">
                 {{props.tweet.repliesCount}}
             </template>
         </TweetItemActionsIcon>
@@ -14,7 +14,7 @@
             <template v-slot:icon="{ classes }">
                 <RefreshIcon :class="classes" />
             </template>
-            <template v-slot:default v-if="showsStats">
+            <template v-slot:default v-if="showStats">
                 {{generateRandomNumber()}}
             </template>
         </TweetItemActionsIcon>
@@ -23,7 +23,7 @@
             <template v-slot:icon="{ classes }">
                 <HeartIcon :class="classes" />
             </template>
-            <template v-slot:default v-if="showsStats">
+            <template v-slot:default v-if="showStats">
                 {{generateRandomNumber()}}
             </template>
         </TweetItemActionsIcon>
@@ -55,7 +55,7 @@ const props = defineProps({
         default: false
     }
 })
-const showsStats= computed(() => props.compact)
+const showStats= computed(() => props.compact)
 const size= computed(() => props.compact?5:6)
 
 const generateRandomNumber = () => {

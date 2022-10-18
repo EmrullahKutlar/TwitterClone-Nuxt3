@@ -23,9 +23,9 @@ const props= defineProps({
 })
 
 const replies= computed(() => props.tweet?.replies||[])
-const handleFormSuccess=(tweeet)=>{
+const handleFormSuccess=(tweet)=>{
   navigateTo({
-    path:'/status/'+tweeet.id
+    path:'/status/'+tweet.id
   })
 }
 </script>

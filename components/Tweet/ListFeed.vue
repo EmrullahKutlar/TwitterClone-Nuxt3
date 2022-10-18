@@ -16,7 +16,7 @@
 <script setup>
 const props = defineProps({
   tweets: {
-    tpye: Array,
+    type: Array,
     required: true
   }
 })
