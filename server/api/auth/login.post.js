@@ -1,7 +1,7 @@
 import { getUserByUsername } from "../../db/users";
 import bcrypt from "bcrypt";
 import { generateTokens, sendRefreshToken } from "../../utils/jwt.js";
-import { userTransformer } from "~~/server/transformes/user";
+import { userTransformer } from "~~/server/transformers/user";
 import { createRefreshToken } from "~~/server/db/refreshTokens";
 import { sendError } from "h3";
 

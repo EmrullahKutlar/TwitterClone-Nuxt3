@@ -5,8 +5,8 @@ export default defineNuxtConfig({
     //   transpile:['@heroicons/vue/outline','@heroicons/vue/solid']
     // },
     runtimeConfig: {
-        jwtAccessSecret: process.env.JWT_ACCESS_TOKEN_Secret,
-        jwtRefreshSecret: process.env.JWT_REFRESH_TOKEN_Secret,
+        jwtAccessSecret: process.env.JWT_ACCESS_TOKEN_SECRET,
+        jwtRefreshSecret: process.env.JWT_REFRESH_TOKEN_SECRET,
         //cloudinary
         cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME,
         cloudinaryApiKey: process.env.CLOUDINARY_API_KEY,
