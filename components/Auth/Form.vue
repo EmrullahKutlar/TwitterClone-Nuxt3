@@ -5,7 +5,15 @@
                 <LogoTwitter />
             </div>
         </div>
+        <div class="flex justify-around ">
+            <p class="text-gray-400">
+                Username: emrullah
+            </p>
+            <p class="text-gray-400">
+                Password: 123456
+            </p>
 
+        </div>
         <form action="" @submit.prevent="handleLogin" class="pt-5 space-y-6">
             <UIInput v-model="data.username" label="Username" placeholder="@username" />
 
