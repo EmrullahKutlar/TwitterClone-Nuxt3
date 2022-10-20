@@ -106,7 +106,7 @@
 const { twitterBorderColor } = useTailwindConfig()
 const emits = defineEmits(['onSubmit'])
 const text = ref("")
-const isDisabled=computed(()=> text.value === '')
+const isDisabled=computed(()=> text.value === '' && selectedFile.value === null)
 const imageInput = ref()
 const selectedFile = ref(null)
 const inputImageUrl = ref(null)
